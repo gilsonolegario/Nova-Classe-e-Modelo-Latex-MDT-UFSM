@@ -1,0 +1,112 @@
+\usepackage{fontspec} % Font selection for XeLaTeX;
+\usepackage{amsmath,latexsym,amssymb} %Pacotes matemáticos
+\usepackage{tocloft} % sumário
+\usepackage{nameref}
+\usepackage{xunicode} % Unicode support for LaTeX character names (accents, European chars, etc)
+\usepackage{xltxtra} % Extra customizations for XeLaTeX
+\usepackage{etoolbox} %pacote para contribuir no reinicio da contagem das notas de rodapé
+\usepackage{color} %cores das citações
+\usepackage{polyglossia} % para idiomas no Xelatex
+\setmainlanguage{brazil}
+\setotherlanguage{english}
+\usepackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
+
+\usepackage[hyperref=true,isbn=false,maxcitenames=3,maxbibnames=100,citestyle=authoryear-comp,bibstyle=authortitle,dashed=false,natbib=true]{biblatex} %bom... a bibliografia! 
+
+
+%ajuste para MDT
+\DeclareFieldFormat*[inbook,inproceedings,patent,thesis,unpublished]{title}{\mkbibbold{#1\isdot}}
+\DeclareFieldFormat[article,misc,incollection]{title}{#1} % título de artigo sem estilo, que já é, por si, um estilo
+\DeclareFieldFormat[article]{journaltitle}{\mkbibbold{#1}} % título das revistas em negrito
+\DeclareFieldFormat[book]{title}{\mkbibbold{#1}\isdot} % título dos livros em negrito
+\DeclareFieldFormat{booktitle}{\mkbibbold{#1}} % for edited volumes
+
+
+
+
+\addbibresource{referencias/referencias8.bib}
+
+
+\usepackage{hyperref}
+\hypersetup{
+	bookmarksopen=true,
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black}
+\usepackage{bookmark}
+
+
+\definecolor{Crimson}{rgb}{0.6471, 0.1098, 0.1882} %definição de cor Crimson
+
+\setmainfont{Baskerville} % set the main body font (\textrm), assumes Adobe Garamond Pro is installed
+\setromanfont[Mapping=tex-text]{Baskerville} %% to support TeX conventions like ``---''
+\setsansfont{Baskerville} %fonte sans
+\setmonofont{Times New Roman} %mono
+
+
+
+%----------------- HEADERS & FOOTERS-----------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\setlength{\headheight}{15pt}
+
+
+
+%----------------- Formatação capítulos -------------
+
+\usepackage{titlesec} % formatação dos capítulos
+\titleformat{\chapter}[display]{\LargeC\bfseries\centering}%
+   {\chaptername~\thechapter}{1ex}{}
+   \titlespacing*{\subsection}{0cm}{1cm}{0cm}
+
+
+
+
+%-------------- Formatação título seções e subseções------------
+
+
+\titleformat{\section}{\LargeD\bfseries}{\thesection}{2cm}{}
+\titlespacing*{\section}{0pt}{1cm}{0,5cm}
+\titleformat{\subsection}{\LargeD\bfseries}{\thesection}{2cm}{}
+\titlespacing*{\subsection}{0pt}{1cm}{0,5cm}
+
+
+
+%--------------------------SUMÁRIO-------------------------------
+\setlength\cftparskip{0,5pt}
+\setlength\cftbeforechapskip{0pt}
+
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} %pontinhos nos capítulos do sumário
+
+\renewcommand{\cfttoctitlefont}{\hfill\LargeC\bfseries} % tamanho da fonte do título do sumário
+\renewcommand{\cftaftertoctitle}{\hfill}
+
+\cftsetindents{section}{0.0in}{0.0in} % Indentando as seções e sub... para a esquerda
+\cftsetindents{subsection}{0.0in}{0in}
+\cftsetindents{subsubsection}{0.0in}{0.0in}
+
+\let\Contentsline\contentsline % retira os números das páginas do sumário
+\renewcommand\contentsline[3]{\Contentsline{#1}{#2}{}}
+
+\renewcommand{\contentsname}{Sumário}
+\def\numberline#1{}
+
+
+%--------------- Reinicia as notas de rodapé a cada capítulo --------------
+\makeatletter
+\patchcmd\chapter{\thispagestyle}{\global\c@footnote\z@\thispagestyle}{}{}
+\makeatother
+
+
+%-------------- Recuo do rodapé para emparelhar com o filete ---------------
+
+\makeatletter
+\renewcommand\@makefntext[1]{%
+  \noindent\makebox[0,7em][r]{\@makefnmark}#1}
+\makeatother
+
