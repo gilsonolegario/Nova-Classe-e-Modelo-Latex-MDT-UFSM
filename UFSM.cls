@@ -200,7 +200,7 @@
 \singlespacing
 	\begin{titlepage}
 	\begin{center}
-  \setcounter{page}{2}
+  % \setcounter{page}{2}
 
 %-------------------------- cabeçalho ---------------
 

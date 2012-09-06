@@ -15,6 +15,17 @@
 
 \usepackage[hyperref=true,isbn=false,maxcitenames=3,maxbibnames=100,citestyle=authoryear-comp,bibstyle=authortitle,dashed=false,natbib=true]{biblatex} %bom... a bibliografia! 
 
+%--------------- Bookmarks do pdf -----------
+
+\usepackage{hyperref}
+\hypersetup{
+	  bookmarksopen=true,
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black}
+\usepackage{bookmark}
 
 %-------------- Ajuste para Referências MDT ------------
 \DeclareFieldFormat*[inbook,inproceedings,patent,thesis,unpublished]{title}{\mkbibbold{#1\isdot}}
@@ -63,31 +74,32 @@
 \titlespacing\subsection{0pt}{5pt plus 2pt minus 2pt}{36pt plus 2pt minus 2pt}
 \titlespacing\subsubsection{0pt}{5pt plus 2pt minus 2pt}{36pt plus 2pt minus 2pt}
 
-\renewcommand{\thesection}{} % Retira os números das seções
-
 
 %--------------------------SUMÁRIO-------------------------------
-\renewcommand{\contentsname}{Sumário}
+\renewcommand{\thesection}{} % Retira os números das seções
 
-\setlength\cftparskip{1pt}   % Espaço entre os items 
-\setlength\cftbeforesecskip{1pt}
-\setlength\cftaftertoctitleskip{1pt}
+\makeatletter
+\renewcommand*{\numberline}[1]{} % Retira numeração esquerda do sumário
+\makeatother
+
+
+\setlength\cftparskip{0pt} % Espaço entre os items
+\setlength\cftbeforechapskip{0pt}
 
 
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % Pontilhado nos capítulos do sumário
 \renewcommand{\cfttoctitlefont}{\hfill\LargeC\bfseries} % Tamanho da fonte do título do sumário
 \renewcommand{\cftaftertoctitle}{\hfill}
 
+
 \cftsetindents{section}{0.0in}{0.0in} % Indentando as seções e sub... para a esquerda
 \cftsetindents{subsection}{0.0in}{0in}
 \cftsetindents{subsubsection}{0.0in}{0.0in}
 
+
 \let\Contentsline\contentsline % Retira os números das páginas do sumário
 \renewcommand\contentsline[3]{\Contentsline{#1}{#2}{}}
 
-\makeatletter
-\renewcommand*{\numberline}[1]{} % Retira numeração esquerda do sumário
-\makeatother
 
 
 %--------------- Reinicia as notas de rodapé a cada capítulo --------------
@@ -103,14 +115,3 @@
 \makeatother
 
 
-%--------------- Bookmarks do pdf -----------
-
-\usepackage{bookmark}
-\usepackage{hyperref}
-\hypersetup{
-	  bookmarksopen=true,
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black}
