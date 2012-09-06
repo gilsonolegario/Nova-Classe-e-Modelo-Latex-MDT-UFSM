@@ -1,0 +1,116 @@
+% ... péssimo estilo
+
+
+\usepackage{fontspec} % Seleção de fonte XeLaTeX
+\usepackage{amsmath,latexsym,amssymb} % Pacotes matemáticos
+\usepackage{tocloft} % Ajustes Sumário
+\usepackage{nameref}
+\usepackage{xunicode} % Unicode support for LaTeX character names (accents, European chars, etc)
+\usepackage{xltxtra} % Extra customizations for XeLaTeX
+\usepackage{etoolbox} % Pacote para contribuir no reinicio da contagem das notas de rodapé
+\usepackage{color} % Cores das citações
+\usepackage{polyglossia} % Para idiomas no Xelatex, hifenização
+\setmainlanguage{brazil}
+\setotherlanguage{english}
+
+\usepackage[hyperref=true,isbn=false,maxcitenames=3,maxbibnames=100,citestyle=authoryear-comp,bibstyle=authortitle,dashed=false,natbib=true]{biblatex} %bom... a bibliografia! 
+
+
+%-------------- Ajuste para Referências MDT ------------
+\DeclareFieldFormat*[inbook,inproceedings,patent,thesis,unpublished]{title}{\mkbibbold{#1\isdot}}
+\DeclareFieldFormat[article,misc,incollection]{title}{#1} % título de artigo sem estilo, que já é, por si, um estilo
+\DeclareFieldFormat[article]{journaltitle}{\mkbibbold{#1}} % título das revistas em negrito
+\DeclareFieldFormat[book]{title}{\mkbibbold{#1}\isdot} % título dos livros em negrito
+\DeclareFieldFormat{booktitle}{\mkbibbold{#1}} % for edited volumes
+
+\setmainfont{Baskerville} % Aplica a fonte principal
+\setromanfont[Mapping=tex-text]{Baskerville} % Para suportar convenções TeX como ``---''
+\setsansfont{Baskerville} % Fonte Sans
+\setmonofont{Times New Roman} % ... Mono
+
+
+%----------------- HEADERS & FOOTERS-----------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\setlength{\headheight}{15pt}
+
+
+%----------------- Formatação capítulos -------------
+\usepackage{titlesec} % formatação dos capítulos
+\titleformat{\chapter}[display]{\LargeC\bfseries\centering}%
+    {\chaptername~\thechapter}{1ex}{}
+\titlespacing\chapter{0pt}{-0,5cm plus 2pt minus 2pt}{36pt plus 2pt minus 2pt}
+
+    
+\makeatletter
+\let\@makechapterhead\@makeschapterhead
+\patchcmd\l@chapter{\begingroup}{\begingroup\let\numberline\@gobble}{}{}
+\makeatother
+
+
+%-------------- Formatação título seções e subseções------------
+\titleformat{\section}[display]    % Formato do título da seção
+{\normalfont\bf\filright}
+{}{1pc}{}
+\titleformat{\subsection}[display]    % ... título da seção
+{\normalfont\bf\filright}
+{}{1pc}{}
+
+\titlespacing\section{0pt}{5pt plus 2pt minus 2pt}{36pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{5pt plus 2pt minus 2pt}{36pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{5pt plus 2pt minus 2pt}{36pt plus 2pt minus 2pt}
+
+\renewcommand{\thesection}{} % Retira os números das seções
+
+
+%--------------------------SUMÁRIO-------------------------------
+\renewcommand{\contentsname}{Sumário}
+
+\setlength\cftparskip{1pt}   % Espaço entre os items 
+\setlength\cftbeforesecskip{1pt}
+\setlength\cftaftertoctitleskip{1pt}
+
+
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % Pontilhado nos capítulos do sumário
+\renewcommand{\cfttoctitlefont}{\hfill\LargeC\bfseries} % Tamanho da fonte do título do sumário
+\renewcommand{\cftaftertoctitle}{\hfill}
+
+\cftsetindents{section}{0.0in}{0.0in} % Indentando as seções e sub... para a esquerda
+\cftsetindents{subsection}{0.0in}{0in}
+\cftsetindents{subsubsection}{0.0in}{0.0in}
+
+\let\Contentsline\contentsline % Retira os números das páginas do sumário
+\renewcommand\contentsline[3]{\Contentsline{#1}{#2}{}}
+
+\makeatletter
+\renewcommand*{\numberline}[1]{} % Retira numeração esquerda do sumário
+\makeatother
+
+
+%--------------- Reinicia as notas de rodapé a cada capítulo --------------
+\makeatletter
+\patchcmd\chapter{\thispagestyle}{\global\c@footnote\z@\thispagestyle}{}{}
+\makeatother
+
+
+%-------------- Recuo do rodapé para emparelhar com o filete ---------------
+\makeatletter
+\renewcommand\@makefntext[1]{%
+  \noindent\makebox[0,7em][r]{\@makefnmark}#1}
+\makeatother
+
+
+%--------------- Bookmarks do pdf -----------
+
+\usepackage{bookmark}
+\usepackage{hyperref}
+\hypersetup{
+	  bookmarksopen=true,
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black}

@@ -16,9 +16,9 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{UFSM}
 
-\DeclareOption{diss}{
-  \AtEndOfClass{
-    \newcommand{\titlepagespecificinfo}{
+\DeclareOption{diss}{%
+  \AtEndOfClass{%
+    \newcommand{\titlepagespecificinfo}{%
         Dissertação apresentada ao Curso de Mestrado de em Filosofia
         Programa de \\ Pós-Graduação em Filosofia (PPGF), \ Área de Concentração Filosofia Teórica e Prática,  
 %        do \@altcourse{}, \'{A}rea de Concentra{\c{c}}{\~a}o em Filosofia, 
@@ -36,18 +36,12 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessOptions\relax
 
-
 \LoadClass[12pt,a4paper]{report}
 \RequirePackage{indentfirst}
 \RequirePackage{ifthen}
 \RequirePackage{lastpage}
 \RequirePackage{setspace} 
-
-
-
-%indentar em 1,25 o primeiro parágrafo
-\setlength{\parindent}{1.25cm}%
-
+\RequirePackage[top=3cm, bottom=2cm, left=3cm, right=2cm]{geometry}
 
 %----------------------- Definições de tamanho de fonte, MDT UFSM -----------------
 
@@ -55,37 +49,6 @@
 \newcommand\LargeB{\@setfontsize\LargeB{16pt}{16.1pt}}
 \newcommand\LargeC{\@setfontsize\LargeC{14pt}{14.1pt}}
 \newcommand\LargeD{\@setfontsize\LargeD{12pt}{12.1pt}}
-
-
-
-%%=============================================================================
-%% Redefinição do formato de citações longas
-%%=============================================================================
-\renewenvironment{quote}{
-        \footnotesize
-        \begin{list}{}{\setlength{\leftmargin}{40mm}\item\relax}
-}{
-        \end{list}
-}
-
-
-
-
-%%=============================================================================
-%% Notas de rodapé
-%%=============================================================================
-
-
-
-
-% Filete de 3cm a partir da margem esquerda
-\renewcommand\footnoterule{%
-\kern-3\p@
-\hrule\@width.19\columnwidth
-\kern2.6\p@}
-
-
-
 
 %---------------------- DEFINICOES DA UFSM----------------------------
 
@@ -164,7 +127,6 @@
 \providecommand{\UFSMdefenseday}{}
 \newcommand{\defenseday}[1]{\renewcommand{\UFSMdefenseday}{#1}}
 
-
 %-------------------keywords contagem ---- Definição das palavras-chave (máx. 10)  --------------
 
 \newcounter{kwcounter}
@@ -215,12 +177,13 @@
         \@ifundefined{keywj}{}{. \keywj}%
 }
 
-
 \newcommand{\UFSMifnotempty}[3]{\ifthenelse{\not\equal{#1}{}}{#2}{#3}}
 
 
 
-%---------------------------- CAPA ----------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAPA %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\capa}{
 \singlespacing
@@ -236,25 +199,25 @@
       
 
 
-\vspace{49.7mm}
+\vspace{4.23333333cm}
 %------------------------- nome da coisa ---------------
 \onehalfspacing
 			{\bfseries\LargeA\MakeUppercase{\UFSMtitulo}}\par
 \singlespacing
 
-\vspace{44.9mm}
+\vspace{3.81cm}
 
 %------------------------ dissertação de ... ----------------
 			{\bfseries\LargeC\MakeUppercase{\UFSMdocumento\ de \UFSMnivel}}\par
 
 
 
-\vspace{35.1mm}
+\vspace{2.96333333cm}
 %--------------------- nome do vivente -------------
 
 				{\bfseries\LargeB{\UFSMautor}}\\
 
-\vspace{18.5mm}
+\vspace{7.7cm}
 
     
 %------------------- onde foi que fez a coisa toda -----------
@@ -269,7 +232,7 @@
 %---------------- te espalha, vivente ---------------
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% FOLHA DE ROSTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% FOLHA DE ROSTO %%%%%%%%%%%%%%%%% 
 \clearpage
 
 \newcommand{\folharosto}{
@@ -290,9 +253,9 @@
     
 {\bfseries\UFSMgrauorientador~}{\bfseries\ignorespaces\UFSMproforientador}\par						
 		
-		\vspace{20.1mm}
+		\vspace{6.7cm}
 		
-			{\bfseries\LargeC\MakeUppercase{\UFSMcidade}, RS, Brasil}\par
+			{\bfseries\LargeC{\UFSMcidade}, RS, Brasil}\par
 			{\bfseries\LargeC\UFSMano}
 		
     \end{center}
@@ -300,8 +263,8 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% FICHA CATALOGRÁFICA
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% FICHA CATALOGRÁFICA %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\makeCIP}[1]{
   \clearpage
@@ -345,8 +308,7 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% FOLHA DE APROVACAO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% FOLHA DE APROVACAO %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\aprovacao}{
 	\begin{titlepage}
@@ -393,20 +355,18 @@ aprova a \UFSMdocumento\ de \UFSMnivel}}
 
 {\bfseries\UFSMsegundoprofbanca}
 
-% \vspace{35.1mm}
-\vspace{30.1mm}
+\vspace{71.6mm}
+% \vspace{30.1mm}
 
 
 
-{\LargeC\UFSMcidade, \UFSMdiadadefesa\ de \UFSMano}
+{\LargeD\UFSMcidade, \UFSMdiadadefesa\ de \UFSMano}
 		
     \end{center}
     \end{titlepage}
 }
 
-%=============================================================================
-% Resumo (abstract) e Abstract (englishabstract)
-%=============================================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Resumo (abstract) e Abstract (englishabstract) %%%%%%%%%%%%%%%%%%%%%%%%%%%%
  \renewenvironment{abstract}{%
    \chapter*{\abstractname}
  	%\vspace{-1cm}
@@ -456,5 +416,3 @@ aprova a \UFSMdocumento\ de \UFSMnivel}}
      Defense Place and Date:~\UFSMcidade,~\UFSMdefenseday,~\UFSMano\\~\\
    }
  }
-
-

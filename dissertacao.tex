@@ -1,5 +1,9 @@
 \documentclass[diss]{UFSM}
-\usepackage{estilo}
+\usepackage{estiloufsm}
+
+\addbibresource{referencias/referencias8.bib}
+
+
 % ------------------------------ Preâmbulo ------------------------------
 \universidade{Universidade Federal de Santa Maria}
 \universidadeeng{Federal University of Santa Maria}
@@ -49,18 +53,16 @@
 
 %=================== Início do Documento ===================
 \begin{document}
-\newgeometry{top=2cm,left=2cm,right=2cm,bottom=2cm}
+
 
 \setlength{\baselineskip}{1.5\baselineskip}
 \pagenumbering{gobble}
 
 %=================== Capa ===================
-
 \capa
 
 
 %=================== Folha de rosto ===================
-
 \folharosto
 
 
@@ -87,7 +89,7 @@
 
 %=================== Agradecimentos ===================
 
-\chapter*{Agradecimentos}
+\chapter{Agradecimentos}
 
 
 
@@ -130,7 +132,7 @@
 \pagenumbering{arabic}
 \setcounter{page}{9}
 
-\include{texto/intro}
+\include{texto/aintro}
 
 \setcounter{page}{1}
 \include{texto/art1}
@@ -149,13 +151,12 @@
 
 \pagenumbering{gobble}
 
-\restoregeometry
+
 %=================== Referências ===================
 \defbibheading{bibliography}{\chapter*{REFERÊNCIAS}\addcontentsline{toc}{chapter}{REFERÊNCIAS}}
 
 \setlength{\baselineskip}{\baselineskip}
 
 \printbibliography
-
 
 \end{document}
