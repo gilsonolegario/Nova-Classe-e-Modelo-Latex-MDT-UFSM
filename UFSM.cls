@@ -6,12 +6,23 @@
                                           % #  # #  #  #   #     # #    #   #   #    #   #  #  #  #  
                                           % ##### ####   ##  ### ## ##    ###   ###   ####  ### # ### 
 
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
 
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+                                          
     %% Classe alternativa para a formatacao de teses e dissertações segundo a MDT-UFSM.
-    %% Baseada na versão de abnt-UTFPR.cls (v1.3) (de autoria de Hugo Vieira Neto e Diogo Rosa Kuiaski, modificada por Adolfo Neto) e
-    %% na versão mdt-ufsm.cls (do Departamento de Informática da UFSM)
-    %% 
-    %% Modificada e melhorada por Gilson Olegario da Silva - Filosofia UFSM - para adaptar-se a forma de dissertação por artigos científicos.
+    %% Modificada e melhorada por Gilson Olegario da Silva - Filosofia UFSM - para adaptar-se a forma de dissertação por artigos científicos. 
+    %% Baseada na versão de abnt-UTFPR.cls (v1.3) (por Hugo Vieira Neto e Diogo Rosa Kuiaski) e
+    %% na versão mdt-ufsm.cls (do Departamento de Informática da UFSM), que por sua vez, é uma adaptação de iiufrgs.cls   %% (UFRGS TeX Users Group).
               
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{UFSM}
